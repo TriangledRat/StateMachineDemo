@@ -14,4 +14,8 @@ public class EnemyChaseState : EnemyBaseState
     {
     }
 
+    public override void OnCollisionEnter(EnemyStateManager enemy, Collision collision)
+    {
+    }
+
 }

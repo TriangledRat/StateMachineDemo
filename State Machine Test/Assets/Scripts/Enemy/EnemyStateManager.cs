@@ -24,6 +24,11 @@ public class EnemyStateManager : MonoBehaviour
         currentState.UpdateState(this);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        currentState.OnCollisionEnter(this, collision);
+    }
+
     public void SwitchState(EnemyBaseState state)
     {
         currentState = state;

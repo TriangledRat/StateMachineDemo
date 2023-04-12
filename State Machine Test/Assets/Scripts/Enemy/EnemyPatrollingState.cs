@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EnemyPatrollingState : EnemyBaseState
 {
+    float moveSpeed; 
     public override void EnterState(EnemyStateManager enemy)
     {
     }
@@ -12,6 +13,9 @@ public class EnemyPatrollingState : EnemyBaseState
     }
 
     public override void ExitState(EnemyStateManager enemy)
+    {
+    }
+    public override void OnCollisionEnter(EnemyStateManager enemy, Collision collision)
     {
     }
 }
