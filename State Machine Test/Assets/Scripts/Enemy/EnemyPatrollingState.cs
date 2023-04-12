@@ -8,7 +8,9 @@ public class EnemyPatrollingState : EnemyBaseState
     float countdown;
     public override void EnterState(EnemyStateManager enemy)
     {
+        countdown = 5;
         rb = enemy.GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
     }
 
     public override void UpdateState(EnemyStateManager enemy)
