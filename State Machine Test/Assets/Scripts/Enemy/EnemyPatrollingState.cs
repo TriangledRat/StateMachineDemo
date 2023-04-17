@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyPatrollingState : EnemyBaseState
 {
-    Vector3 moveSpeed = new Vector3(0,0,-10);
+    float moveSpeed = 10;
     Rigidbody rb;
     float countdown;
     public override void EnterState(EnemyStateManager enemy)
@@ -15,7 +15,7 @@ public class EnemyPatrollingState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager enemy)
     {
-        rb.velocity = moveSpeed;
+        rb.velocity = enemy.transform.forward * moveSpeed;
         if(countdown >= 0)
         {
             countdown -= Time.deltaTime;
@@ -34,9 +34,9 @@ public class EnemyPatrollingState : EnemyBaseState
     {
         GameObject other = collision.gameObject;
         if(other.tag == "Wall")
-        {
-            moveSpeed *= -1;
+        {           
             enemy.transform.Rotate(0, -180, 0);
+            rb.velocity = enemy.transform.forward * moveSpeed;
         }
     }
 }
