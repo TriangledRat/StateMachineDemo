@@ -4,7 +4,6 @@ using UnityEngine.AI;
 
 public class EnemyReturnState : EnemyBaseState
 {
-    float moveSpeed = 10;
     Rigidbody rb;
     Vector3 returnTarget;
     NavMeshAgent agent;
@@ -14,10 +13,10 @@ public class EnemyReturnState : EnemyBaseState
     {
         returnTarget = new Vector3(enemy.xStore, enemy.yStore, enemy.zStore);
         rb = enemy.GetComponent<Rigidbody>();
-        agent = enemy.GetComponent<NavMeshAgent>();
-        agent.enabled = true;
         rb.isKinematic = true;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+        agent = enemy.GetComponent<NavMeshAgent>();
+        agent.enabled = true;
     }
 
     public override void UpdateState(EnemyStateManager enemy)

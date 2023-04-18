@@ -5,13 +5,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     CharacterController cc;
-    Vector3 movementSpeed;
     float playerSpeed = 30;
+
     // Start is called before the first frame update
     void Start()
     {
         cc = GetComponent<CharacterController>();
-
         
     }
 
@@ -19,7 +18,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        cc.Move(move * Time.deltaTime * playerSpeed);
-        
+        cc.Move(move * Time.deltaTime * playerSpeed);        
     }
 }

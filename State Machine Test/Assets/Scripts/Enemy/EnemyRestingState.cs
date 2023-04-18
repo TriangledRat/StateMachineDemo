@@ -9,10 +9,12 @@ public class EnemyRestingState : EnemyBaseState
     public override void EnterState(EnemyStateManager enemy)
     {
         snoozingTime = 5;
-        rb = enemy.GetComponent<Rigidbody>();
-        agent = enemy.GetComponent<NavMeshAgent>();
-        rb.constraints = ~RigidbodyConstraints.FreezeRotationZ;
         enemy.transform.Rotate(0, 0, -90);
+
+        rb = enemy.GetComponent<Rigidbody>();
+        rb.constraints = ~RigidbodyConstraints.FreezeRotationZ;
+
+        agent = enemy.GetComponent<NavMeshAgent>();
         agent.enabled = false;
     }
 
