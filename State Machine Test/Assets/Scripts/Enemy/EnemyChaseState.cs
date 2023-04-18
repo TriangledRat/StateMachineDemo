@@ -12,23 +12,31 @@ public class EnemyChaseState : EnemyBaseState
     RaycastHit hit;
     Transform target;
     float distance;
+    NavMeshAgent agent;
 
     public override void EnterState(EnemyStateManager enemy)
     {
         fwd = enemy.transform.forward;
         rb = enemy.GetComponent<Rigidbody>();
+        agent = enemy.GetComponent<NavMeshAgent>();
+        agent.enabled = false;
     }
 
     public override void UpdateState(EnemyStateManager enemy)
     {
         var step = moveSpeed * Time.deltaTime;
+        //Debug.Log("I'm chasing!");
         ray = new Ray(enemy.transform.position + new Vector3(0, -0.5f, -5), fwd);
         if (Physics.SphereCast(ray, 5, out hit, 10, enemy.m_LayerMask))
         {
             target = hit.transform;
             enemy.transform.LookAt(target);
         }
-
+        //else
+        //{
+        //    target = null;
+        //}
+        
 
         if (target != null)
         {
@@ -42,6 +50,11 @@ public class EnemyChaseState : EnemyBaseState
                 enemy.SwitchState(enemy.returnState);
             }
         }
+
+        //else
+        //{
+        //    enemy.SwitchState(enemy.returnState);
+        //}
     }
 
     public override void ExitState(EnemyStateManager enemy)

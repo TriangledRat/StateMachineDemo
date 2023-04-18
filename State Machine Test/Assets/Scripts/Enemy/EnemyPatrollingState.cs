@@ -10,12 +10,16 @@ public class EnemyPatrollingState : EnemyBaseState
     Rigidbody rb;
     float countdown;
     RaycastHit hit;
+    NavMeshAgent agent;
 
     public override void EnterState(EnemyStateManager enemy)
     {
         fwd = enemy.transform.forward;
         countdown = 5;
         rb = enemy.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        agent = enemy.GetComponent<NavMeshAgent>();
+        agent.enabled = false;
        
         rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
     }
